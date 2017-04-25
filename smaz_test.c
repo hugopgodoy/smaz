@@ -11,27 +11,17 @@ int main(void) {
     int comprlen, decomprlen;
     int j, ranlen;
     int times = 1000000;
+    float result_compression;
     char *strings[] = {
-        "This is a small string",
-        "foobar",
-        "the end",
-        "not-a-g00d-Exampl333",
-        "Smaz is a simple compression library",
-        "Nothing is more difficult, and therefore more precious, than to be able to decide",
-        "this is an example of what works very well with smaz",
-        "1000 numbers 2000 will 10 20 30 compress very little",
-        "and now a few italian sentences:",
-        "Nel mezzo del cammin di nostra vita, mi ritrovai in una selva oscura",
-        "Mi illumino di immenso",
-        "L'autore di questa libreria vive in Sicilia",
-        "try it against urls",
-        "http://google.com",
-        "http://programming.reddit.com",
-        "http://github.com/antirez/smaz/tree/master",
-        "/media/hdb1/music/Alben/The Bla",
+        "Tentar não. Faça ou não faça. Tentativa não há. ",
+        "É uma armadilha! ",
+        "O medo é o caminho para o lado negro. ",
+        "Um mago nunca se atrasa Frodo Bolseiro, nem se adianta, ele chega exatamente quando pretende chegar. ",
+        "Tudo o que temos de decidir é o que fazer com o tempo que nos é dado. ",
         NULL
     };
 
+    result_compression=0.0;
     j=0;
     while(strings[j]) {
         int comprlevel;
@@ -51,7 +41,10 @@ int main(void) {
             printf("'%s' compressed by %d%%\n",strings[j],comprlevel);
         }
         j++;
+        result_compression = result_compression + comprlevel;
     }
+
+    printf("Average compression result: %.2f%%\n", result_compression / j);
     printf("Encrypting and decrypting %d test strings...\n", times);
     while(times--) {
         char charset[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz/. ";
